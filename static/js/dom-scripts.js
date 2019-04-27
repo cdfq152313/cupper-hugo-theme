@@ -52,7 +52,7 @@
 
 /* Add "link here" links to <h2> headings */
 (function () {
-  var headings = document.querySelectorAll('main > h2');
+  var headings = document.querySelectorAll('main > h1');
 
   Array.prototype.forEach.call(headings, function (heading) {
     var id = heading.getAttribute('id');
@@ -62,7 +62,7 @@
       newHeading.setAttribute('tabindex', '-1');
 
       var container = document.createElement('div');
-      container.setAttribute('class', 'h2-container');
+      container.setAttribute('class', 'h1-container');
       container.appendChild(newHeading);
 
       heading.parentNode.insertBefore(container, heading);

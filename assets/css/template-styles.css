@@ -445,7 +445,7 @@ caption {
   padding: 0.25em 0.75em;
 }
 #disqus-comments {
-  display: none; 
+  display: none;
 }
 
 /* Pattern lists */
@@ -805,11 +805,11 @@ h1 svg {
 }
 
 /* Section links */
-.h2-container {
+.h1-container {
     position: relative;
     font-size: 1.66rem;
 }
-.h2-container a {
+.h1-container a {
     position: absolute;
     margin-top: 0;
     top: 0;

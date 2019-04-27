@@ -1,15 +1,37 @@
-<header class="intro-and-nav" role="banner">
-  <div>
-    <div class="intro">
-      <a class="logo" href="/" aria-label="{{ .Site.Title }} home page">
-        <img src="{{ "images/logo.svg" | absURL }}" alt="">
-      </a>
-      <p class="library-desc">
-        {{ with .Site.Params.description }}
-          {{ . | markdownify }}
-        {{ end }}
-      </p>
-    </div>
-    {{ partial "nav.html" . }}
+<header>
+  <h1>
+    <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+      <use xlink:href="#bookmark"></use>
+    </svg>
+    {{ .Title }}
+  </h1>
+
+  <div class="date">
+    {{ $dateFormat := $.Site.Params.dateFormat | default "Jan 2, 2006" }}
+    {{ $publishDate := .PublishDate }}
+    <strong aria-hidden="true">Publish date: </strong>{{ $publishDate.Format $dateFormat }}
+    {{ with .Lastmod }}
+      {{ if gt . $publishDate }}
+        <br>
+        <strong aria-hidden="true">Last updated: </strong>{{ .Format $dateFormat }}
+      {{ end }}
+    {{ end }}
   </div>
+
+  {{ with .Params.tags }}
+    <div class="tags">
+      <strong aria-hidden="true">Tags: </strong>
+      <ul aria-label="tags">
+        {{ range . }}
+          <li>
+            <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+              <use xlink:href="#tag"></use>
+            </svg>
+            {{ $href := print ("tags/" | absLangURL) (. | urlize) "/" }}
+            <a href="{{ $href }}">{{ . }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  {{ end }}
 </header>
